@@ -20,13 +20,19 @@ class CreateSuperAdminCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Creates a super admin user';
+    protected $description = 'Creates a super admin user (optional)';
 
     /**
      * Execute the console command.
      */
     public function handle(): int
     {
+        // ask if to proceed with creating a super admin
+        if (!$this->confirm('Do you want to create a super admin user?', true)) {
+            $this->info('Super admin creation skipped.');
+            return CommandAlias::SUCCESS;
+        }
+
         $this->line('Create the first super admin user for your new application');
         // ask for the user's name
         $name = $this->ask('What is the users name?');

@@ -57,7 +57,7 @@
                 @method('DELETE')
                 <p class="text-xs">
                     {{ __('users.you_are_impersonating') }}:
-                    <strong>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</strong>
+                    <strong>{{ auth()->user()->name }}</strong>
                 </p>
                 <flux:button type="submit" size="sm" variant="danger" form="stop-impersonating" class="!w-full !flex !flex-row">
                     <div>
