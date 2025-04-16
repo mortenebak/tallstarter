@@ -13,7 +13,7 @@ Route::middleware(['auth'])->group(function (): void {
     Route::delete('/impersonate/stop', [\App\Http\Controllers\ImpersonationController::class, 'destroy'])->name('impersonate.destroy');
 
     // Settings
-    Route::redirect('settings', 'settings/profile');
+    Route::redirect('settings', '/settings/profile');
     Route::get('settings/profile', \App\Livewire\Settings\Profile::class)->name('settings.profile');
     Route::get('settings/password', \App\Livewire\Settings\Password::class)->name('settings.password');
     Route::get('settings/appearance', \App\Livewire\Settings\Appearance::class)->name('settings.appearance');
