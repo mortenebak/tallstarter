@@ -25,3 +25,11 @@
     </x-settings.layout>
 
 </section>
+
+@script
+<script>
+    Livewire.on('locale-updated', () => {
+        Livewire.navigate(window.location.href);
+    });
+</script>
+@endscript
