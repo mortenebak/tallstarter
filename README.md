@@ -123,7 +123,7 @@ Ensuring that your code is up to standard and tested.
 
 # Contributing
 
-Feel free to contribute to this project by submitting a pull request.
+Feel free to contribute to this project by submitting a pull request. Here's a great resource on how to [contribute to open source projects](https://github.com/firstcontributions/first-contributions?tab=readme-ov-file).
 
 # Credits
 
