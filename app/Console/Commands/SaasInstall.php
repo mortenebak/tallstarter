@@ -82,9 +82,9 @@ class SaasInstall extends Command
 
         $this->info('Files published successfully. Now:');
 
-        $this->info('- add the STRIPE_KEY, STRIPE_SECRET, and STRIPE_WEBHOOK_SECRET to your .env file.');
+        $this->info('- add the values to STRIPE_KEY, STRIPE_SECRET, and STRIPE_WEBHOOK_SECRET in your .env file.');
 
-        $this->info('- change the PlanSeeder file to add your own plans. Then seed it.');
+        $this->info('- change the PlanSeeder file to add your own plans. Then seed it: php artisan db:seed --class=PlanSeeder');
 
         $this->info('- run "php artisan migrate" to run the migrations.');
 
