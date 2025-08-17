@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class CreateSuperAdminCommand extends Command
@@ -28,8 +29,9 @@ class CreateSuperAdminCommand extends Command
     public function handle(): int
     {
         // ask if to proceed with creating a super admin
-        if (!$this->confirm('Do you want to create a super admin user?', true)) {
+        if (! $this->confirm('Do you want to create a super admin user?', true)) {
             $this->info('Super admin creation skipped.');
+
             return CommandAlias::SUCCESS;
         }
 
@@ -50,7 +52,7 @@ class CreateSuperAdminCommand extends Command
         $user = User::query()->create([
             'name' => $name,
             'email' => $email,
-            'password' => bcrypt($password),
+            'password' => Hash::make($password),
             'locale' => 'en',
         ]);
 

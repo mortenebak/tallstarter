@@ -23,6 +23,8 @@ class Login extends Component
 
     public bool $remember = false;
 
+    public bool $passwordVisible = false;
+
     /**
      * Handle an incoming authentication request.
      */

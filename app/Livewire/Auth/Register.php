@@ -21,6 +21,10 @@ class Register extends Component
 
     public string $password_confirmation = '';
 
+    public bool $passwordVisible = false;
+
+    public bool $ConfirmationPasswordVisible = false;
+
     /**
      * Handle an incoming registration request.
      */
