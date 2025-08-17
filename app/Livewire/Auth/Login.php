@@ -23,6 +23,8 @@ class Login extends Component
 
     public bool $remember = false;
 
+    public bool $passwordVisible = false;
+
     /**
      * Handle an incoming authentication request.
      */
@@ -43,7 +45,7 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('home', absolute: false), navigate: true);
     }
 
     /**
