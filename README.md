@@ -123,14 +123,14 @@ Ensuring that your code is up to standard and tested.
 
 # Contributing
 
-Feel free to contribute to this project by submitting a pull request.
+Feel free to contribute to this project by submitting a pull request. Here's a great resource on how to [contribute to open source projects](https://github.com/firstcontributions/first-contributions?tab=readme-ov-file).
 
 # Credits
 
 I'd like to thank all the people who have contributed to the packages used in this project.
 Especially [Spatie](https://spatie.be) for their great packages, Livewire and Alpinejs for their awesome framework and the Laravel community for their great work. And of course [Laravel](https://laravel.com) for their awesome framework, and their [Livewire Starter Kit](https://github.com/laravel/livewire-starter-kit), which this kit is based on.
 
-### Contributers
+### Contributors
 Take a look at the [contributors](https://github.com/mortenebak/tallstarter/graphs/contributors) who have helped make this project better. Many thanks!
 
 # Donate

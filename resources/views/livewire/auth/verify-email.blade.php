@@ -1,6 +1,6 @@
 <div class="mt-4 flex flex-col gap-6">
     <flux:text class="text-center">
-        {{ __('global.please_verify_you_email') }}
+        {{ __('global.please_verify_your_email_address') }}
     </flux:text>
 
     @if (session('status') == 'verification-link-sent')
