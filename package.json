@@ -13,7 +13,7 @@
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.0",
         "tailwindcss": "^4.0.7",
-        "vite": "^6.3"
+        "vite": "^6.4"
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "4.9.5",
