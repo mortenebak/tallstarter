@@ -2,32 +2,31 @@
 
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 
 Route::middleware('guest')->group(function (): void {
-    Volt::route('login', 'auth.login')
+    Route::get('login', \App\Livewire\Auth\Login::class)
         ->name('login');
 
-    Volt::route('register', 'auth.register')
+    Route::get('register', \App\Livewire\Auth\Register::class)
         ->name('register');
 
-    Volt::route('forgot-password', 'auth.forgot-password')
+    Route::get('forgot-password', \App\Livewire\Auth\ForgotPassword::class)
         ->name('password.request');
 
-    Volt::route('reset-password/{token}', 'auth.reset-password')
+    Route::get('reset-password/{token}', \App\Livewire\Auth\ResetPassword::class)
         ->name('password.reset');
 
 });
 
 Route::middleware('auth')->group(function (): void {
-    Volt::route('verify-email', 'auth.verify-email')
+    Route::get('verify-email', \App\Livewire\Auth\VerifyEmail::class)
         ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 
-    Volt::route('confirm-password', 'auth.confirm-password')
+    Route::get('confirm-password', \App\Livewire\Auth\ConfirmPassword::class)
         ->name('password.confirm');
 });
 
