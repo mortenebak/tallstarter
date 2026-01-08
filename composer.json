@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.0.6",
         "livewire/volt": "^1.7.0",
+        "pragmarx/google2fa-qrcode": "^3.0",
         "spatie/laravel-permission": "^6.16",
         "wire-elements/modal": "^2.0.13"
     },

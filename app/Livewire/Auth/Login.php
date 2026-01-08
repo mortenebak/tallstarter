@@ -42,6 +42,20 @@ class Login extends Component
             ]);
         }
 
+        $user = Auth::user();
+
+        // Check if user has 2FA enabled
+        if ($user->hasTwoFactorEnabled()) {
+            Auth::logout();
+
+            session()->put([
+                'login.id' => $user->id,
+                'login.remember' => $this->remember,
+            ]);
+
+            return $this->redirect(route('two-factor.challenge'), navigate: true);
+        }
+
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
