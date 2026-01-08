@@ -80,6 +80,10 @@ class User extends Authenticatable // implements MustVerifyEmail
      */
     public function recoveryCodes(): array
     {
+        if (is_null($this->two_factor_recovery_codes)) {
+            return [];
+        }
+
         return json_decode(decrypt($this->two_factor_recovery_codes), true) ?? [];
     }
 
