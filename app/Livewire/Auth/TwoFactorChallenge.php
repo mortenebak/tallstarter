@@ -53,7 +53,7 @@ class TwoFactorChallenge extends Component
      */
     protected function challengeUsingCode($user): void
     {
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
         $secret = decrypt($user->two_factor_secret);
 
         if (! $google2fa->verifyKey($secret, $this->code)) {

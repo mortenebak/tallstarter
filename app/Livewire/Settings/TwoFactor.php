@@ -3,7 +3,6 @@
 namespace App\Livewire\Settings;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Crypt;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use PragmaRX\Google2FA\Google2FA;
@@ -25,7 +24,7 @@ class TwoFactor extends Component
     public function enableTwoFactorAuthentication(): void
     {
         $user = auth()->user();
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
 
         // Generate a new secret
         $secret = $google2fa->generateSecretKey();
@@ -48,7 +47,7 @@ class TwoFactor extends Component
         ]);
 
         $user = auth()->user();
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
 
         $secret = decrypt($user->two_factor_secret);
 
@@ -143,7 +142,7 @@ class TwoFactor extends Component
         }
 
         $user = auth()->user();
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
 
         $secret = decrypt($user->two_factor_secret);
 

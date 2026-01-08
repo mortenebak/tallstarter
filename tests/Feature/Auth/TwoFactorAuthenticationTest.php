@@ -9,7 +9,7 @@ use PragmaRX\Google2FA\Google2FA;
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('user with 2fa enabled is redirected to two factor challenge', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user = User::factory()->create([
@@ -41,7 +41,7 @@ test('user without 2fa can login normally', function (): void {
 });
 
 test('two factor challenge can be passed with valid code', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user = User::factory()->create([
@@ -66,7 +66,7 @@ test('two factor challenge can be passed with valid code', function (): void {
 });
 
 test('two factor challenge fails with invalid code', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user = User::factory()->create([
@@ -89,7 +89,7 @@ test('two factor challenge fails with invalid code', function (): void {
 });
 
 test('two factor challenge can be passed with recovery code', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
     $recoveryCodes = ['RECOVERY-CODE-1', 'RECOVERY-CODE-2'];
 
@@ -119,7 +119,7 @@ test('two factor challenge can be passed with recovery code', function (): void 
 });
 
 test('two factor challenge fails with invalid recovery code', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user = User::factory()->create([

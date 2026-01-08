@@ -6,7 +6,7 @@ use PragmaRX\Google2FA\Google2FA;
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
 test('has two factor enabled returns true when 2fa is active', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user = User::factory()->create([
@@ -27,7 +27,7 @@ test('has two factor enabled returns false when secret is null', function (): vo
 });
 
 test('has two factor enabled returns false when not confirmed', function (): void {
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user = User::factory()->create([

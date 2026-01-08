@@ -29,7 +29,7 @@ test('two factor authentication can be enabled', function (): void {
 
 test('two factor authentication can be confirmed with valid code', function (): void {
     $user = User::factory()->create();
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user->two_factor_secret = encrypt($secret);
@@ -50,7 +50,7 @@ test('two factor authentication can be confirmed with valid code', function (): 
 
 test('two factor authentication cannot be confirmed with invalid code', function (): void {
     $user = User::factory()->create();
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user->two_factor_secret = encrypt($secret);
@@ -68,7 +68,7 @@ test('two factor authentication cannot be confirmed with invalid code', function
 
 test('recovery codes can be regenerated', function (): void {
     $user = User::factory()->create();
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user->two_factor_secret = encrypt($secret);
@@ -91,7 +91,7 @@ test('recovery codes can be regenerated', function (): void {
 
 test('two factor authentication can be disabled', function (): void {
     $user = User::factory()->create();
-    $google2fa = new Google2FA();
+    $google2fa = new Google2FA;
     $secret = $google2fa->generateSecretKey();
 
     $user->two_factor_secret = encrypt($secret);
