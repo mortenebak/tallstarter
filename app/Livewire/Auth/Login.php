@@ -28,7 +28,7 @@ class Login extends Component
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function login()
     {
         $this->validate();
 
@@ -40,6 +40,20 @@ class Login extends Component
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
+        }
+
+        $user = Auth::user();
+
+        // Check if user has 2FA enabled
+        if ($user->hasTwoFactorEnabled()) {
+            Auth::logout();
+
+            session()->put([
+                'login.id' => $user->id,
+                'login.remember' => $this->remember,
+            ]);
+
+            return $this->redirect(route('two-factor.challenge'), navigate: true);
         }
 
         RateLimiter::clear($this->throttleKey());

@@ -16,6 +16,8 @@ Route::middleware('guest')->group(function (): void {
     Route::get('reset-password/{token}', \App\Livewire\Auth\ResetPassword::class)
         ->name('password.reset');
 
+    Route::get('two-factor-challenge', \App\Livewire\Auth\TwoFactorChallenge::class)
+        ->name('two-factor.challenge');
 });
 
 Route::middleware('auth')->group(function (): void {

@@ -3,6 +3,7 @@
         <flux:navlist>
             <flux:navlist.item href="{{ route('settings.profile') }}">Profile</flux:navlist.item>
             <flux:navlist.item href="{{ route('settings.password') }}">Password</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.two-factor') }}">Two-Factor Authentication</flux:navlist.item>
             <flux:navlist.item href="{{ route('settings.appearance') }}">Appearance</flux:navlist.item>
             <flux:navlist.item href="{{ route('settings.locale') }}">Locale</flux:navlist.item>
         </flux:navlist>
