@@ -1,10 +1,10 @@
 <div class="flex items-start max-md:flex-col">
     <div class="mr-10 w-full pb-4 md:w-[220px]">
         <flux:navlist>
-            <flux:navlist.item href="{{ route('settings.profile') }}" wire:navigate>Profile</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.password') }}" wire:navigate>Password</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.appearance') }}" wire:navigate>Appearance</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.locale') }}" wire:navigate>Locale</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.profile') }}">Profile</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.password') }}">Password</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.appearance') }}">Appearance</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.locale') }}">Locale</flux:navlist.item>
         </flux:navlist>
     </div>
 
