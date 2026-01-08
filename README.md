@@ -10,6 +10,7 @@ This Starter kit contains my starting point when developing a new Laravel projec
 - ✅ **User Management**, 
 - ✅ **Role Management**,
 - ✅ **Permissions Management**,
+- ✅ **Two-Factor Authentication (2FA)**
 - ✅ **Localization** options
 - ✅ Separate **Dashboard for Super Admins**
 - ✅ Updated for Laravel 12.0 **and** Livewire 3.0
@@ -36,6 +37,7 @@ Among other things, it also includes:
 -   [missing-livewire-assertions](https://github.com/christophrumpel/missing-livewire-assertions) for extra testing of Livewire components by [Christoph Rumpel](https://github.com/christophrumpel)
 -   [LivewireAlerts](https://github.com/jantinnerezo/livewire-alert) for SweetAlerts
 -   [Spatie Roles & Permissions](https://spatie.be/docs/laravel-permission/v5/introduction) for user roles and permissions
+-   [Google2FA](https://github.com/antonioribeiro/google2fa) for Two-Factor Authentication (TOTP)
 -   [Strict Eloquent Models](https://planetscale.com/blog/laravels-safety-mechanisms) for safety
 -   [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar) for debugging
 -   [Laravel IDE helper](https://github.com/barryvdh/laravel-ide-helper) for IDE support
@@ -103,6 +105,20 @@ return [
     // ...
 ];
 ```
+
+# Features
+
+## Two-Factor Authentication
+
+This starter kit includes built-in support for Two-Factor Authentication (2FA) using TOTP (Time-based One-Time Passwords), compatible with apps like Google Authenticator, Authy, and 1Password.
+
+Key features:
+- QR code generation for easy setup
+- Recovery codes for account recovery
+- Seamless integration with the authentication flow
+- User-friendly interface
+
+For detailed information, see [Two-Factor Authentication Documentation](docs/TWO_FACTOR_AUTHENTICATION.md).
 
 # Developing
 
