@@ -281,6 +281,24 @@ Or if you're using config caching in production:
 php artisan config:cache
 ```
 
+### Conditional Display
+
+The social login buttons on the login and register pages are automatically shown or hidden based on your configuration:
+
+- **Buttons only appear if credentials are configured**: Each provider's button (Google, Facebook, Twitter/X) will only be displayed if both `client_id` and `client_secret` are set in your configuration
+- **"Or continue with" divider is conditional**: The divider line and text only appear if at least one social login provider is configured
+- **Dynamic grid layout**: The button grid automatically adjusts its layout based on how many providers are configured:
+  - 1 provider → Single column layout
+  - 2 providers → Two column layout
+  - 3 providers → Three column layout
+
+This means:
+- If you haven't configured any social login providers, the entire social login section is hidden
+- If you only configure Google, only the Google button appears
+- You can configure just the providers you want to use without showing broken buttons for unconfigured ones
+
+**Example:** If you only want to use Google login, simply add only the Google credentials to your `.env` file, and only the Google button will be displayed on the login and register pages.
+
 ---
 
 ## How It Works
