@@ -83,7 +83,7 @@
                     @endif
 
                     <div class="flex flex-wrap gap-3">
-                        @if (!$showingRecoveryCodes)
+                        @if (!$showingRecoveryCodes && !auth()->user()->two_factor_recovery_codes_viewed_at)
                             <flux:button wire:click="showRecoveryCodes" variant="outline">
                                 {{ __('Show Recovery Codes') }}
                             </flux:button>

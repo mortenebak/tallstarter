@@ -66,6 +66,7 @@ class TwoFactor extends Component
         })->all();
 
         $user->two_factor_recovery_codes = encrypt(json_encode($recoveryCodes));
+        $user->two_factor_recovery_codes_viewed_at = now();
         $user->save();
 
         $this->recoveryCodes = $recoveryCodes;
@@ -84,8 +85,24 @@ class TwoFactor extends Component
      */
     public function showRecoveryCodes(): void
     {
-        $this->recoveryCodes = auth()->user()->recoveryCodes();
+        $user = auth()->user();
+
+        // Only allow showing recovery codes if they haven't been viewed yet
+        if ($user->two_factor_recovery_codes_viewed_at !== null) {
+            $this->dispatch('alert', [
+                'type' => 'error',
+                'message' => 'Recovery codes can only be viewed once for security reasons. Please regenerate new codes if needed.',
+            ]);
+
+            return;
+        }
+
+        $this->recoveryCodes = $user->recoveryCodes();
         $this->showingRecoveryCodes = true;
+        
+        // Mark codes as viewed
+        $user->two_factor_recovery_codes_viewed_at = now();
+        $user->save();
     }
 
     /**
@@ -100,6 +117,7 @@ class TwoFactor extends Component
         })->all();
 
         $user->two_factor_recovery_codes = encrypt(json_encode($recoveryCodes));
+        $user->two_factor_recovery_codes_viewed_at = now();
         $user->save();
 
         $this->recoveryCodes = $recoveryCodes;
@@ -121,6 +139,7 @@ class TwoFactor extends Component
         $user->two_factor_secret = null;
         $user->two_factor_recovery_codes = null;
         $user->two_factor_confirmed_at = null;
+        $user->two_factor_recovery_codes_viewed_at = null;
         $user->save();
 
         $this->showingQrCode = false;
