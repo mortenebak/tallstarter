@@ -3,7 +3,7 @@
                    description="{{ __('global.log_into_your_account_text') }}"/>
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')"/>
-    <form wire:submit="login" class="flex flex-col gap-6">
+    <form wire:submit.prevent="login" class="flex flex-col gap-6">
         <!-- Email Address -->
         <flux:input wire:model="email" :label="__('global.email_address')" type="email" name="email" required
                     autocomplete="email" placeholder="email@example.com"/>

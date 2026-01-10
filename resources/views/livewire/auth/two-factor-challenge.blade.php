@@ -5,7 +5,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')"/>
 
-    <form wire:submit="challenge" class="flex flex-col gap-6">
+    <form wire:submit.prevent="challenge" class="flex flex-col gap-6">
         <!-- Code Input -->
         <flux:input 
             wire:model="code" 

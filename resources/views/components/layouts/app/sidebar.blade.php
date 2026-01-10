@@ -109,6 +109,14 @@
 
                 <flux:menu.separator/>
 
+                @if (config('teams.enabled'))
+                    <flux:menu.radio.group>
+                        <flux:menu.item href="{{ route('teams.index') }}" icon="users">{{ __('teams.title') }}</flux:menu.item>
+                    </flux:menu.radio.group>
+
+                    <flux:menu.separator/>
+                @endif
+
                 <flux:menu.radio.group>
                     <flux:menu.item href="/settings/profile" icon="cog">{{ __('global.settings') }}</flux:menu.item>
                 </flux:menu.radio.group>
@@ -160,6 +168,16 @@
                 </flux:menu.radio.group>
 
                 <flux:menu.separator/>
+
+                @if (config('teams.enabled'))
+                    <flux:menu.radio.group>
+                        <flux:menu.item href="{{ route('teams.index') }}" icon="users">
+                            {{ __('teams.title') }}
+                        </flux:menu.item>
+                    </flux:menu.radio.group>
+
+                    <flux:menu.separator/>
+                @endif
 
                 <flux:menu.radio.group>
                     <flux:menu.item href="/settings/profile" icon="cog">

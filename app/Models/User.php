@@ -28,6 +28,7 @@ class User extends Authenticatable // implements MustVerifyEmail
         'email',
         'password',
         'locale',
+        'current_team_id',
     ];
 
     /**
@@ -54,6 +55,50 @@ class User extends Authenticatable // implements MustVerifyEmail
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Get the teams that the user belongs to.
+     */
+    public function teams(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Team::class)
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the current team.
+     */
+    public function currentTeam(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'current_team_id');
+    }
+
+    /**
+     * Check if the user is a member of a team.
+     */
+    public function belongsToTeam(Team $team): bool
+    {
+        return $this->teams()->where('team_id', $team->id)->exists();
+    }
+
+    /**
+     * Get the role of the user in a team.
+     */
+    public function getRoleInTeam(Team $team): ?string
+    {
+        $pivot = $this->teams()->where('team_id', $team->id)->first()?->pivot;
+
+        return $pivot?->role;
+    }
+
+    /**
+     * Check if the user is an admin of a team.
+     */
+    public function isAdminOfTeam(Team $team): bool
+    {
+        return $this->getRoleInTeam($team) === 'admin';
     }
 
     /**

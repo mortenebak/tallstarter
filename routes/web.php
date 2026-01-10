@@ -20,6 +20,27 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('settings/appearance', \App\Livewire\Settings\Appearance::class)->name('settings.appearance');
     Route::get('settings/locale', \App\Livewire\Settings\Locale::class)->name('settings.locale');
 
+    // Teams
+    if (config('teams.enabled')) {
+        Route::prefix('teams')->as('teams.')->group(function (): void {
+            Route::get('/', \App\Livewire\Teams\Index::class)->name('index');
+            Route::get('/create', \App\Livewire\Teams\CreateTeam::class)->name('create');
+            Route::get('/{team}', \App\Livewire\Teams\ManageTeam::class)->name('manage');
+            Route::get('/invitations/{invitation}/accept', function (\App\Models\TeamInvitation $invitation, string $token) {
+                try {
+                    app(\App\Livewire\Actions\AcceptTeamInvitation::class)($invitation, $token);
+                    session()->flash('success', __('teams.invitation_accepted'));
+
+                    return redirect()->route('teams.index');
+                } catch (\Exception $e) {
+                    session()->flash('error', $e->getMessage());
+
+                    return redirect()->route('teams.index');
+                }
+            })->name('invitations.accept');
+        });
+    }
+
     // Admin
     Route::prefix('admin')->as('admin.')->group(function (): void {
         Route::get('/', \App\Livewire\Admin\Index::class)->middleware(['auth', 'verified'])->name('index')->middleware('can:access dashboard');

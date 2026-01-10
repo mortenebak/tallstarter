@@ -2,7 +2,7 @@
     <x-auth-header title="{{ __('global.create_an_account') }}" description="{{ __('global.create_an_account_description') }}" />
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
-    <form wire:submit="register" class="flex flex-col gap-6">
+    <form wire:submit.prevent="register" class="flex flex-col gap-6">
         <!-- Name -->
         <flux:input wire:model="name" id="name" :label="__('users.name')" type="text" name="name" required autofocus autocomplete="name" placeholder="{{ __('users.your_full_name') }}" />
         <!-- Email Address -->
