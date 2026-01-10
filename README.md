@@ -11,6 +11,7 @@ This Starter kit contains my starting point when developing a new Laravel projec
 - ✅ **Role Management**,
 - ✅ **Permissions Management**,
 - ✅ **Two-Factor Authentication (2FA)**
+- ✅ **Teams** - Collaborative team management (configurable)
 - ✅ **Localization** options
 - ✅ Separate **Dashboard for Super Admins**
 - ✅ Updated for Laravel 12.0 **and** Livewire 3.0
@@ -119,6 +120,20 @@ Key features:
 - User-friendly interface
 
 For detailed information, see [Two-Factor Authentication Documentation](docs/TWO_FACTOR_AUTHENTICATION.md).
+
+## Teams
+
+This starter kit includes comprehensive teams functionality that allows users to create, manage, and collaborate within teams. Teams can be enabled or disabled via configuration, making it suitable for both single-user and multi-team applications.
+
+Key features:
+- Team creation and management
+- Role-based access (Admin/Member)
+- Email invitations with secure tokens
+- Team switching
+- Member and role management
+- Configurable feature (enable/disable via config)
+
+For detailed information, see [Teams Documentation](docs/TEAMS.md).
 
 # Developing
 
