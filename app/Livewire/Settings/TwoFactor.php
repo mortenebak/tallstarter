@@ -99,7 +99,7 @@ class TwoFactor extends Component
 
         $this->recoveryCodes = $user->recoveryCodes();
         $this->showingRecoveryCodes = true;
-        
+
         // Mark codes as viewed
         $user->two_factor_recovery_codes_viewed_at = now();
         $user->save();
