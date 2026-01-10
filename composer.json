@@ -12,7 +12,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2|^8.3",
+        "php": "^8.2|^8.3|^8.4|^8.5",
         "jantinnerezo/livewire-alert": "^3.0.3",
         "laravel/framework": "^12.2",
         "laravel/pint": "^1.21.2",
@@ -28,6 +28,7 @@
         "barryvdh/laravel-ide-helper": "^3.5.5",
         "fakerphp/faker": "^1.24.1",
         "larastan/larastan": "^3.2",
+        "laravel/boost": "^1.8",
         "laravel/pail": "^1.2.2",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6.12",
