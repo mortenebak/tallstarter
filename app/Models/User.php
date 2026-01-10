@@ -58,6 +58,7 @@ class User extends Authenticatable // implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
+            'two_factor_recovery_codes_viewed_at' => 'datetime',
         ];
     }
 
@@ -122,6 +123,14 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function hasTwoFactorEnabled(): bool
     {
         return ! is_null($this->two_factor_secret) && ! is_null($this->two_factor_confirmed_at);
+    }
+
+    /**
+     * Determine if recovery codes have been viewed.
+     */
+    public function hasViewedRecoveryCodes(): bool
+    {
+        return ! is_null($this->two_factor_recovery_codes_viewed_at);
     }
 
     /**
