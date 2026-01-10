@@ -11,6 +11,7 @@ This Starter kit contains my starting point when developing a new Laravel projec
 - ✅ **Role Management**,
 - ✅ **Permissions Management**,
 - ✅ **Two-Factor Authentication (2FA)**
+- ✅ **Teams** - Collaborative team management (configurable)
 - ✅ **Social Login** (Google, Facebook, Twitter/X)
 - ✅ **Localization** options
 - ✅ Separate **Dashboard for Super Admins**
@@ -121,6 +122,19 @@ Key features:
 
 For detailed information, see [Two-Factor Authentication Documentation](docs/TWO_FACTOR_AUTHENTICATION.md).
 
+## Teams
+
+This starter kit includes comprehensive teams functionality that allows users to create, manage, and collaborate within teams. Teams can be enabled or disabled via configuration, making it suitable for both single-user and multi-team applications.
+
+Key features:
+- Team creation and management
+- Role-based access (Admin/Member)
+- Email invitations with secure tokens
+- Team switching
+- Member and role management
+- Configurable feature (enable/disable via config)
+
+For detailed information, see [Teams Documentation](docs/TEAMS.md).
 ## Social Login
 
 This starter kit includes support for social authentication using Laravel Socialite. Users can sign in or register using their Google, Facebook, or Twitter/X accounts.

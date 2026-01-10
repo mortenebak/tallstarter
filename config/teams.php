@@ -12,5 +12,5 @@ return [
     |
     */
 
-    'enabled' => env('TEAMS_ENABLED', false),
+    'enabled' => env('TEAMS_ENABLED', true),
 ];
