@@ -88,7 +88,7 @@ class TwoFactor extends Component
         $user = auth()->user();
 
         // Only allow showing recovery codes if they haven't been viewed yet
-        if ($user->two_factor_recovery_codes_viewed_at !== null) {
+        if ($user->hasViewedRecoveryCodes()) {
             $this->dispatch('alert', [
                 'type' => 'error',
                 'message' => 'Recovery codes can only be viewed once for security reasons. Please regenerate new codes if needed.',

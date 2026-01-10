@@ -126,6 +126,14 @@ class User extends Authenticatable // implements MustVerifyEmail
     }
 
     /**
+     * Determine if recovery codes have been viewed.
+     */
+    public function hasViewedRecoveryCodes(): bool
+    {
+        return ! is_null($this->two_factor_recovery_codes_viewed_at);
+    }
+
+    /**
      * Get the two-factor recovery codes.
      */
     public function recoveryCodes(): array
