@@ -10,6 +10,10 @@ Route::middleware('guest')->group(function (): void {
     Route::get('register', \App\Livewire\Auth\Register::class)
         ->name('register');
 
+    Route::get('auth/{provider}/redirect', [App\Http\Controllers\Auth\SocialLoginController::class, 'redirect'])->name('social.redirect');
+
+    Route::get('auth/{provider}/callback', [App\Http\Controllers\Auth\SocialLoginController::class, 'callback'])->name('social.callback');
+
     Route::get('forgot-password', \App\Livewire\Auth\ForgotPassword::class)
         ->name('password.request');
 

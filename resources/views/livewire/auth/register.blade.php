@@ -22,6 +22,24 @@
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full"> {{ __('global.create_an_account') }} </flux:button>
         </div>
+
+        <div class="relative flex items-center py-4">
+            <div class="flex-grow border-t border-zinc-200 dark:border-zinc-700"></div>
+            <span class="mx-4 flex-shrink text-sm text-zinc-500">{{ __('global.or_continue_with') }}</span>
+            <div class="flex-grow border-t border-zinc-200 dark:border-zinc-700"></div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+            <flux:button href="{{ route('social.redirect', 'google') }}" variant="subtle" class="w-full">
+                <flux:icon.google class="size-4" />
+            </flux:button>
+            <flux:button href="{{ route('social.redirect', 'facebook') }}" variant="subtle" class="w-full">
+                <flux:icon.facebook class="size-4" />
+            </flux:button>
+            <flux:button href="{{ route('social.redirect', 'twitter') }}" variant="subtle" class="w-full">
+                <flux:icon.twitter class="size-4" />
+            </flux:button>
+        </div>
     </form>
     <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
         <span> {{ __('global.already_have_an_account') }} </span>

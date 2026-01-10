@@ -45,4 +45,5 @@ return [
     'please_verify_your_email_address' => 'Please verify your email address by clicking on the link we just emailed to you.',
     'verification_link_sent' => 'A new verification link has been sent to the email address you provided during registration.',
     'resend_verification_email' => 'Resend verification email',
+    'or_continue_with' => 'Or continue with',
 ];
