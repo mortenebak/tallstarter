@@ -5,9 +5,11 @@
             {{ __('teams.manage_team_description') }}
         </x-slot:subtitle>
         <x-slot:buttons>
-            <flux:button href="{{ route('teams.index') }}" variant="ghost">
-                {{ __('global.back') }}
-            </flux:button>
+            @if(Route::has('teams.index'))
+                <flux:button href="{{ route('teams.index') }}" variant="ghost">
+                    {{ __('global.back') }}
+                </flux:button>
+            @endif
         </x-slot:buttons>
     </x-page-heading>
 
@@ -15,15 +17,15 @@
         {{-- Invite User Section --}}
         <x-form wire:submit="inviteUser" class="space-y-4 border p-4 rounded-lg dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900/50">
             <flux:heading size="md">{{ __('teams.invite_user') }}</flux:heading>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <flux:input 
-                    wire:model="inviteEmail" 
-                    label="{{ __('teams.email') }}" 
+                <flux:input
+                    wire:model="inviteEmail"
+                    label="{{ __('teams.email') }}"
                     placeholder="{{ __('teams.email_placeholder') }}"
                     type="email"
                 />
-                
+
                 <flux:select wire:model="inviteRole" label="{{ __('teams.role') }}">
                     <flux:select.option value="member">{{ __('teams.member') }}</flux:select.option>
                     <flux:select.option value="admin">{{ __('teams.admin') }}</flux:select.option>
@@ -106,9 +108,9 @@
                         @if($isAdmin)
                             <x-table.cell class="gap-2 flex justify-end">
                                 @if($editingUserId !== $member->id)
-                                    <flux:button 
-                                        wire:click="editRole({{ $member->id }})" 
-                                        size="sm" 
+                                    <flux:button
+                                        wire:click="editRole({{ $member->id }})"
+                                        size="sm"
                                         variant="ghost">
                                         {{ __('global.edit') }}
                                     </flux:button>
@@ -133,8 +135,8 @@
                                                     </flux:button>
                                                 </flux:modal.close>
                                                 <flux:spacer/>
-                                                <flux:button 
-                                                    type="submit" 
+                                                <flux:button
+                                                    type="submit"
                                                     variant="danger"
                                                     wire:click.prevent="removeUser({{ $member->id }})">
                                                     {{ __('teams.remove') }}
