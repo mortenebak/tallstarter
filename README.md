@@ -12,6 +12,7 @@ This Starter kit contains my starting point when developing a new Laravel projec
 - ✅ **Permissions Management**,
 - ✅ **Two-Factor Authentication (2FA)**
 - ✅ **Teams** - Collaborative team management (configurable)
+- ✅ **Social Login** (Google, Facebook, Twitter/X)
 - ✅ **Localization** options
 - ✅ Separate **Dashboard for Super Admins**
 - ✅ Updated for Laravel 12.0 **and** Livewire 3.0
@@ -134,6 +135,18 @@ Key features:
 - Configurable feature (enable/disable via config)
 
 For detailed information, see [Teams Documentation](docs/TEAMS.md).
+## Social Login
+
+This starter kit includes support for social authentication using Laravel Socialite. Users can sign in or register using their Google, Facebook, or Twitter/X accounts.
+
+Key features:
+- OAuth 2.0 support for Google and Facebook
+- OAuth 1.0a support for Twitter/X
+- Automatic account creation for new social login users
+- Random password generation for social accounts
+- Email verification automatically set
+
+For detailed setup instructions, see [Social Login Documentation](docs/SOCIAL_LOGIN.md).
 
 # Developing
 
