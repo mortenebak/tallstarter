@@ -46,6 +46,7 @@ test('two factor authentication can be confirmed with valid code', function (): 
 
     $this->assertNotNull($user->fresh()->two_factor_confirmed_at);
     $this->assertNotNull($user->fresh()->two_factor_recovery_codes);
+    $this->assertNotNull($user->fresh()->two_factor_recovery_codes_viewed_at);
 });
 
 test('two factor authentication cannot be confirmed with invalid code', function (): void {
@@ -74,6 +75,7 @@ test('recovery codes can be regenerated', function (): void {
     $user->two_factor_secret = encrypt($secret);
     $user->two_factor_confirmed_at = now();
     $user->two_factor_recovery_codes = encrypt(json_encode(['OLD-CODE-1', 'OLD-CODE-2']));
+    $user->two_factor_recovery_codes_viewed_at = now();
     $user->save();
 
     $oldCodes = $user->recoveryCodes();
@@ -87,6 +89,7 @@ test('recovery codes can be regenerated', function (): void {
 
     expect($newCodes)->not->toBe($oldCodes);
     expect($newCodes)->toHaveCount(8);
+    expect($user->fresh()->two_factor_recovery_codes_viewed_at)->not->toBeNull();
 });
 
 test('two factor authentication can be disabled', function (): void {
@@ -97,6 +100,7 @@ test('two factor authentication can be disabled', function (): void {
     $user->two_factor_secret = encrypt($secret);
     $user->two_factor_confirmed_at = now();
     $user->two_factor_recovery_codes = encrypt(json_encode(['CODE-1', 'CODE-2']));
+    $user->two_factor_recovery_codes_viewed_at = now();
     $user->save();
 
     Livewire::actingAs($user)
@@ -108,6 +112,7 @@ test('two factor authentication can be disabled', function (): void {
     $this->assertNull($user->two_factor_secret);
     $this->assertNull($user->two_factor_confirmed_at);
     $this->assertNull($user->two_factor_recovery_codes);
+    $this->assertNull($user->two_factor_recovery_codes_viewed_at);
 });
 
 test('recovery codes can be viewed', function (): void {
@@ -124,4 +129,47 @@ test('recovery codes can be viewed', function (): void {
         ->call('showRecoveryCodes')
         ->assertSet('showingRecoveryCodes', true)
         ->assertSet('recoveryCodes', $recoveryCodes);
+
+    // Verify that the viewed_at timestamp was set
+    $this->assertNotNull($user->fresh()->two_factor_recovery_codes_viewed_at);
+});
+
+test('recovery codes cannot be viewed after being viewed once', function (): void {
+    $user = User::factory()->create();
+    $recoveryCodes = ['CODE-1', 'CODE-2', 'CODE-3'];
+
+    $user->two_factor_secret = encrypt('secret');
+    $user->two_factor_confirmed_at = now();
+    $user->two_factor_recovery_codes = encrypt(json_encode($recoveryCodes));
+    $user->two_factor_recovery_codes_viewed_at = now();
+    $user->save();
+
+    Livewire::actingAs($user)
+        ->test(TwoFactor::class)
+        ->call('showRecoveryCodes')
+        ->assertSet('showingRecoveryCodes', false)
+        ->assertDispatched('alert');
+});
+
+test('recovery codes can be viewed after regeneration', function (): void {
+    $user = User::factory()->create();
+    $google2fa = new Google2FA;
+    $secret = $google2fa->generateSecretKey();
+
+    $user->two_factor_secret = encrypt($secret);
+    $user->two_factor_confirmed_at = now();
+    $user->two_factor_recovery_codes = encrypt(json_encode(['OLD-CODE-1', 'OLD-CODE-2']));
+    $user->two_factor_recovery_codes_viewed_at = now()->subDay();
+    $user->save();
+
+    // Regenerate codes
+    Livewire::actingAs($user)
+        ->test(TwoFactor::class)
+        ->call('regenerateRecoveryCodes')
+        ->assertSet('showingRecoveryCodes', true);
+
+    // Verify the viewed_at timestamp was updated
+    $viewedAt = $user->fresh()->two_factor_recovery_codes_viewed_at;
+    $this->assertNotNull($viewedAt);
+    $this->assertTrue($viewedAt->greaterThan(now()->subMinute()));
 });

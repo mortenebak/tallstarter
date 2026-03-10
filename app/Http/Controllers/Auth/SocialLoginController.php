@@ -35,7 +35,7 @@ class SocialLoginController extends Controller
             'email' => $socialUser->getEmail(),
         ]);
 
-        $isNewUser = !$user->exists;
+        $isNewUser = ! $user->exists;
 
         $user->fill([
             'name' => $socialUser->getName() ?? $socialUser->getNickname(),
