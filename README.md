@@ -49,6 +49,12 @@ I'm considering adding the following features, depending on my clients' most com
 -   [Wire Elements / Modals](https://github.com/wire-elements/modal) for modals (still deciding - for now I'm using Flux UI for this)
 -   [Laravel Cashier](https://laravel.com/docs/10.x/billing) for Stripe integration
 
+# Requirements
+
+- PHP 8.2 or higher (8.2, 8.3, 8.4, or 8.5)
+- [Composer](https://getcomposer.org)
+- Node.js 22+ and npm
+
 # Installation
 
 ![alt text](docs/bash-install.png "Installation using the CLI")
@@ -110,6 +116,18 @@ return [
 
 # Features
 
+## Users, Roles & Permissions
+
+This starter kit includes a complete admin system at `/admin` for managing users, roles, and permissions, built on [Spatie Roles & Permissions](https://spatie.be/docs/laravel-permission).
+
+Key features:
+- User, role, and permission CRUD in a separate admin dashboard
+- Seeded default permissions and a Super Admin role
+- `php artisan app:create-super-admin` command for creating the first admin
+- User impersonation (gated by the `impersonate` permission)
+
+For detailed information, see [Users, Roles & Permissions Documentation](docs/USERS_ROLES_PERMISSIONS.md).
+
 ## Two-Factor Authentication
 
 This starter kit includes built-in support for Two-Factor Authentication (2FA) using TOTP (Time-based One-Time Passwords), compatible with apps like Google Authenticator, Authy, and 1Password.
@@ -165,9 +183,36 @@ This command will run, in order:
 
 Ensuring that your code is up to standard and tested.
 
+# Troubleshooting
+
+## "Unable to locate file in Vite manifest"
+
+The frontend assets haven't been built yet. Run:
+
+```bash
+npm run build # or npm run dev
+```
+
+## Storage permission errors
+
+If you see errors writing to logs or cache, make sure the `storage` and `bootstrap/cache` directories are writable by your web server user, and that the storage symlink exists:
+
+```bash
+php artisan storage:link
+```
+
+## "Database file does not exist" (SQLite)
+
+The default `.env` uses SQLite. Create the database file and run the migrations:
+
+```bash
+touch database/database.sqlite
+php artisan migrate
+```
+
 # Contributing
 
-Feel free to contribute to this project by submitting a pull request. Here's a great resource on how to [contribute to open source projects](https://github.com/firstcontributions/first-contributions?tab=readme-ov-file).
+Feel free to contribute to this project by submitting a pull request. See the [Contributing Guide](CONTRIBUTING.md) for local setup, the `composer review` workflow, and PR conventions. Here's a great resource on how to [contribute to open source projects](https://github.com/firstcontributions/first-contributions?tab=readme-ov-file).
 
 # Credits
 
