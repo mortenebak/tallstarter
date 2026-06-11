@@ -54,7 +54,7 @@ class TwoFactor extends Component
         $secret = decrypt($user->two_factor_secret);
 
         if (! $google2fa->verifyKey($secret, $this->code)) {
-            $this->addError('code', 'The provided code was invalid.');
+            $this->addError('code', __('settings.invalid_code'));
 
             return;
         }
@@ -78,7 +78,7 @@ class TwoFactor extends Component
 
         $this->dispatch('alert', [
             'type' => 'success',
-            'message' => 'Two-factor authentication has been enabled.',
+            'message' => __('settings.two_factor_enabled_alert'),
         ]);
     }
 
@@ -93,7 +93,7 @@ class TwoFactor extends Component
         if ($user->hasViewedRecoveryCodes()) {
             $this->dispatch('alert', [
                 'type' => 'error',
-                'message' => 'Recovery codes can only be viewed once for security reasons. Please regenerate new codes if needed.',
+                'message' => __('settings.recovery_codes_viewed_once'),
             ]);
 
             return;
@@ -127,7 +127,7 @@ class TwoFactor extends Component
 
         $this->dispatch('alert', [
             'type' => 'success',
-            'message' => 'New recovery codes have been generated.',
+            'message' => __('settings.recovery_codes_regenerated'),
         ]);
     }
 
@@ -149,7 +149,7 @@ class TwoFactor extends Component
 
         $this->dispatch('alert', [
             'type' => 'success',
-            'message' => 'Two-factor authentication has been disabled.',
+            'message' => __('settings.two_factor_disabled_alert'),
         ]);
     }
 

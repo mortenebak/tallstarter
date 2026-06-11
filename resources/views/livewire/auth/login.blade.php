@@ -10,7 +10,7 @@
         <!-- Password -->
         <flux:input wire:model="password" :label="__('global.password')"
                     :type="$this->passwordVisible ? 'text' : 'password'" name="password" required
-                    autocomplete="current-password" placeholder="Password">
+                    autocomplete="current-password" :placeholder="__('global.password')">
             <x-slot name="iconTrailing">
                 <flux:button size="sm" variant="subtle" icon="{{ $this->passwordVisible ? 'eye-slash' : 'eye' }}"
                              class="-mr-1" wire:click.prevent="$toggle('passwordVisible')"/>

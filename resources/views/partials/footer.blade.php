@@ -8,21 +8,21 @@
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">Resources</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">{{ __('global.resources') }}</h2>
 
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">Follow us</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">{{ __('global.follow_us') }}</h2>
 
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">Legal</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-zinc-900 uppercase dark:text-white">{{ __('global.legal') }}</h2>
                     <ul class="text-zinc-600 dark:text-zinc-400">
                         <li class="mb-4">
-                            <a href="#" class="hover:underline">Privacy Policy</a>
+                            <a href="#" class="hover:underline">{{ __('global.privacy_policy') }}</a>
                         </li>
                         <li>
-                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                            <a href="#" class="hover:underline">{{ __('global.terms_and_conditions') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -31,7 +31,7 @@
         <hr class="my-6 border-zinc-200 sm:mx-auto dark:border-zinc-700 lg:my-8" />
         <div class="sm:flex sm:items-center sm:justify-between">
             <span class="text-sm text-zinc-500 sm:text-center dark:text-zinc-400">
-                All Rights Reserved.
+                {{ __('global.all_rights_reserved') }}
             </span>
             <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                 <a href="#" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-white">

@@ -68,7 +68,7 @@ class TwoFactorChallenge extends Component
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'code' => __('The provided two-factor authentication code was invalid.'),
+                'code' => __('global.invalid_two_factor_code'),
             ]);
         }
     }
@@ -84,7 +84,7 @@ class TwoFactorChallenge extends Component
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'code' => __('The provided recovery code was invalid.'),
+                'code' => __('global.invalid_recovery_code'),
             ]);
         }
 

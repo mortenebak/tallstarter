@@ -10,5 +10,5 @@
     style="display: none"
     {{ $attributes->merge(['class' => 'text-sm text-gray-600']) }}
 >
-    {{ $slot->isEmpty() ? __('Saved.') : $slot }}
+    {{ $slot->isEmpty() ? __('global.saved') : $slot }}
 </div>

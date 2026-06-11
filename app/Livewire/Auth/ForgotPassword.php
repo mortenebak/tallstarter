@@ -22,6 +22,6 @@ class ForgotPassword extends Component
 
         Password::sendResetLink($this->only('email'));
 
-        session()->flash('status', __('A reset link will be sent if the account exists.'));
+        session()->flash('status', __('global.reset_link_will_be_sent'));
     }
 }
