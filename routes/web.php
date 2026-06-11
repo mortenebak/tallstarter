@@ -26,9 +26,9 @@ Route::middleware(['auth'])->group(function (): void {
             Route::get('/', \App\Livewire\Teams\Index::class)->name('index');
             Route::get('/create', \App\Livewire\Teams\CreateTeam::class)->name('create');
             Route::get('/{team}', \App\Livewire\Teams\ManageTeam::class)->name('manage');
-            Route::get('/invitations/{invitation}/accept', function (\App\Models\TeamInvitation $invitation, string $token) {
+            Route::get('/invitations/{invitation}/accept', function (\Illuminate\Http\Request $request, \App\Models\TeamInvitation $invitation) {
                 try {
-                    app(\App\Livewire\Actions\AcceptTeamInvitation::class)($invitation, $token);
+                    app(\App\Livewire\Actions\AcceptTeamInvitation::class)($invitation, (string) $request->query('token'));
                     session()->flash('success', __('teams.invitation_accepted'));
 
                     return redirect()->route('teams.index');

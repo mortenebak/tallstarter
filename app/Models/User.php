@@ -64,6 +64,8 @@ class User extends Authenticatable // implements MustVerifyEmail
 
     /**
      * Get the teams that the user belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Team, $this>
      */
     public function teams(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
@@ -74,6 +76,8 @@ class User extends Authenticatable // implements MustVerifyEmail
 
     /**
      * Get the current team.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<Team, $this>
      */
     public function currentTeam(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -93,9 +97,9 @@ class User extends Authenticatable // implements MustVerifyEmail
      */
     public function getRoleInTeam(Team $team): ?string
     {
-        $pivot = $this->teams()->where('team_id', $team->id)->first()?->pivot;
+        $role = $this->teams()->where('team_id', $team->id)->first()?->pivot->getAttribute('role');
 
-        return $pivot?->role;
+        return is_string($role) ? $role : null;
     }
 
     /**
@@ -135,6 +139,8 @@ class User extends Authenticatable // implements MustVerifyEmail
 
     /**
      * Get the two-factor recovery codes.
+     *
+     * @return list<string>
      */
     public function recoveryCodes(): array
     {
@@ -142,7 +148,10 @@ class User extends Authenticatable // implements MustVerifyEmail
             return [];
         }
 
-        return json_decode(decrypt($this->two_factor_recovery_codes), true) ?? [];
+        /** @var list<string> $codes */
+        $codes = json_decode(decrypt($this->two_factor_recovery_codes), true) ?? [];
+
+        return $codes;
     }
 
     /**

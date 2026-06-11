@@ -43,13 +43,16 @@ class InviteUserToTeam
         $existingInvitation = TeamInvitation::query()
             ->where('team_id', $team->id)
             ->where('email', $email)
-            ->where('expires_at', '>', now())
             ->first();
 
         if ($existingInvitation) {
-            throw ValidationException::withMessages([
-                'email' => __('teams.invitation_already_sent'),
-            ]);
+            if (! $existingInvitation->isExpired()) {
+                throw ValidationException::withMessages([
+                    'email' => __('teams.invitation_already_sent'),
+                ]);
+            }
+
+            $existingInvitation->delete();
         }
 
         // Create invitation

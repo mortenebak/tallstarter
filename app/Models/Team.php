@@ -40,6 +40,8 @@ class Team extends Model
 
     /**
      * Get the users that belong to the team.
+     *
+     * @return BelongsToMany<User, $this>
      */
     public function users(): BelongsToMany
     {
@@ -50,6 +52,8 @@ class Team extends Model
 
     /**
      * Get the team invitations.
+     *
+     * @return HasMany<TeamInvitation, $this>
      */
     public function invitations(): HasMany
     {
@@ -58,6 +62,8 @@ class Team extends Model
 
     /**
      * Get the admin users of the team.
+     *
+     * @return BelongsToMany<User, $this>
      */
     public function admins(): BelongsToMany
     {
@@ -66,6 +72,8 @@ class Team extends Model
 
     /**
      * Get the member users of the team.
+     *
+     * @return BelongsToMany<User, $this>
      */
     public function members(): BelongsToMany
     {
@@ -96,8 +104,8 @@ class Team extends Model
      */
     public function getRoleForUser(User $user): ?string
     {
-        $pivot = $this->users()->where('user_id', $user->id)->first()?->pivot;
+        $role = $this->users()->where('user_id', $user->id)->first()?->pivot->getAttribute('role');
 
-        return $pivot?->role;
+        return is_string($role) ? $role : null;
     }
 }
