@@ -18,8 +18,8 @@
     </div>
 
     <flux:navlist variant="outline">
-        <flux:navlist.group heading="Platform" class="grid">
-            <flux:navlist.item icon="home" :href="route('admin.index')" :current="request()->routeIs('admin.index')">Dashboard</flux:navlist.item>
+        <flux:navlist.group :heading="__('global.platform')" class="grid">
+            <flux:navlist.item icon="home" :href="route('admin.index')" :current="request()->routeIs('admin.index')">{{ __('global.dashboard') }}</flux:navlist.item>
         </flux:navlist.group>
         {{--        <flux:navlist.group heading="Monetization" class="grid">--}}
         {{--            <flux:navlist.item icon="arrow-right" :href="route('dashboard')" :current="request()->routeIs('dashboard')">Overview</flux:navlist.item>--}}
@@ -27,7 +27,7 @@
         {{--            <flux:navlist.item icon="arrow-right" :href="route('dashboard')" :current="request()->routeIs('dashboard')">Invoices</flux:navlist.item>--}}
         {{--        </flux:navlist.group>--}}
         @canany(['view users', 'view roles', 'view permissions'])
-            <flux:navlist.group heading="Users" class="grid">
+            <flux:navlist.group :heading="__('users.title')" class="grid">
                 @can('view users')
                     <flux:navlist.item icon="user" :href="route('admin.users.index')" :current="request()->routeIs('admin.users.*')">
                         {{ __('users.title') }}

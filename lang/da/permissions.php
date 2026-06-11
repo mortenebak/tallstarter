@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'Navn',
     'title' => 'Tilladelser',
     'title_description' => 'Administrer tilladelser i applikationen',
+    'name' => 'Navn',
     'create_permission' => 'Opret tilladelse',
     'create_permission_description' => 'Opret en ny tilladelse',
     'edit_permission' => 'Rediger tilladelse',

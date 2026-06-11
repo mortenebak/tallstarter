@@ -1,11 +1,11 @@
 <div class="flex items-start max-md:flex-col">
     <div class="mr-10 w-full pb-4 md:w-[220px]">
         <flux:navlist>
-            <flux:navlist.item href="{{ route('settings.profile') }}">Profile</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.password') }}">Password</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.two-factor') }}">Two-Factor Authentication</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.appearance') }}">Appearance</flux:navlist.item>
-            <flux:navlist.item href="{{ route('settings.locale') }}">Locale</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.profile') }}">{{ __('settings.profile') }}</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.password') }}">{{ __('settings.password') }}</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.two-factor') }}">{{ __('global.two_factor_authentication') }}</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.appearance') }}">{{ __('settings.appearance') }}</flux:navlist.item>
+            <flux:navlist.item href="{{ route('settings.locale') }}">{{ __('users.locale') }}</flux:navlist.item>
         </flux:navlist>
     </div>
 

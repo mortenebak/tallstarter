@@ -8,8 +8,8 @@
 
     <x-form wire:submit="createUser" class="space-y-6">
 
-        <flux:input wire:model.live="name" label="Name" />
-        <flux:input wire:model.live="email" label="E-mail" />
+        <flux:input wire:model.live="name" :label="__('users.name')" />
+        <flux:input wire:model.live="email" :label="__('users.email')" />
 
         <flux:select wire:model="locale" label="{{ __('users.select_locale') }}" placeholder="{{ __('users.select_locale') }}" name="locale">
             @foreach($locales as $key => $locale)

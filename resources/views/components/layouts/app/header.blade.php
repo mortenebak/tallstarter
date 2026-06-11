@@ -13,32 +13,32 @@
 
             <flux:navbar class="-mb-px max-lg:hidden">
                 <flux:navbar.item icon="layout-grid" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')">
-                    Dashboard
+                    {{ __('global.dashboard') }}
                 </flux:navbar.item>
             </flux:navbar>
 
             <flux:spacer />
 
             <flux:navbar class="mr-1.5 space-x-0.5 py-0!">
-                <flux:tooltip content="Search" position="bottom">
-                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" label="Search" />
+                <flux:tooltip :content="__('global.search')" position="bottom">
+                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('global.search')" />
                 </flux:tooltip>
-                <flux:tooltip content="Repository" position="bottom">
+                <flux:tooltip :content="__('global.repository')" position="bottom">
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="folder-git-2"
                         href="https://github.com/laravel/livewire-starter-kit"
                         target="_blank"
-                        label="Repository"
+                        :label="__('global.repository')"
                     />
                 </flux:tooltip>
-                <flux:tooltip content="Documentation" position="bottom">
+                <flux:tooltip :content="__('global.documentation')" position="bottom">
                     <flux:navbar.item
                         class="h-10 max-lg:hidden [&>div>svg]:size-5"
                         icon="book-open-text"
                         href="https://laravel.com/docs/starter-kits"
                         target="_blank"
-                        label="Documentation"
+                        :label="__('global.documentation')"
                     />
                 </flux:tooltip>
             </flux:navbar>
@@ -81,7 +81,7 @@
                     @endif
 
                     <flux:menu.radio.group>
-                        <flux:menu.item href="/settings/profile" icon="cog">Settings</flux:menu.item>
+                        <flux:menu.item href="/settings/profile" icon="cog">{{ __('global.settings') }}</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
@@ -89,7 +89,7 @@
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                            {{ __('Log Out') }}
+                            {{ __('global.log_out') }}
                         </flux:menu.item>
                     </form>
                 </flux:menu>
@@ -105,9 +105,9 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group heading="Platform">
+                <flux:navlist.group :heading="__('global.platform')">
                     <flux:navlist.item icon="layout-grid" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')">
-                        Dashboard
+                        {{ __('global.dashboard') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
@@ -116,11 +116,11 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    Repository
+                    {{ __('global.repository') }}
                 </flux:navlist.item>
 
                 <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits" target="_blank">
-                    Documentation
+                    {{ __('global.documentation') }}
                 </flux:navlist.item>
             </flux:navlist>
         </flux:sidebar>

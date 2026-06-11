@@ -13,7 +13,7 @@
 
     <flux:navbar class="-mb-px max-lg:hidden">
         <flux:navbar.item icon="layout-grid" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')">
-            Dashboard
+            {{ __('global.dashboard') }}
         </flux:navbar.item>
     </flux:navbar>
 
@@ -148,9 +148,9 @@
     </a>
     @auth
         <flux:navlist variant="outline">
-            <flux:navlist.group heading="Platform">
+            <flux:navlist.group :heading="__('global.platform')">
                 <flux:navlist.item icon="layout-grid" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')">
-                    Dashboard
+                    {{ __('global.dashboard') }}
                 </flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>

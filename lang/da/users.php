@@ -26,4 +26,6 @@ return [
     'edit_user_description' => 'Rediger brugeren i applikationen',
     'update_user' => 'Opdater bruger',
     'user_created' => 'Bruger oprettet',
+    'view_user' => 'Vis bruger',
+    'viewing_user' => 'Viser brugeren :name',
 ];
