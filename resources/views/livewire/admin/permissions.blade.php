@@ -12,7 +12,7 @@
     </x-page-heading>
 
     <div class="flex items-center justify-between w-full mb-6 gap-2">
-        <flux:input wire:model.live="search" placeholder="{{ __('global.search_here') }}" class="!w-auto"/>
+        <flux:input wire:model.live="search" placeholder="{{ __('global.search_here') }}" aria-label="{{ __('global.search_here') }}" class="!w-auto"/>
         <flux:spacer/>
 
         <flux:select wire:model.live="perPage" class="!w-auto">

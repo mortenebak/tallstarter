@@ -3,7 +3,7 @@
 'direction' => null
 ])
 
-<th {{ $attributes->merge(['class' => 'py-3 px-6 text-left dark:bg-zinc-700 border-b dark:dark:border-zinc-500'])->only('class') }}
+<th scope="col" {{ $attributes->merge(['class' => 'py-3 px-6 text-left dark:bg-zinc-700 border-b dark:dark:border-zinc-500'])->only('class') }}
 >
     @unless ($sortable)
         <span class="text-left text-xs leading-4 font-medium uppercase tracking-wider">{{ $slot }}</span>
