@@ -59,21 +59,6 @@
     {{--            </flux:navbar>--}}
 
     @auth
-        @if (Session::has('admin_user_id'))
-            <div class="py-2 flex items-center justify-center dark:text-white rounded mr-4">
-                <form id="stop-impersonating" class="flex flex-col items-center gap-3" action="{{ route('impersonate.destroy') }}"
-                      method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <flux:button type="submit" size="sm" variant="danger" form="stop-impersonating" class="!w-full !flex !flex-row cursor-pointer">
-                        <div class="flex items-center gap-2">
-                            <flux:icon.loader-circle class="animate-spin mr-2"/>
-                            {{ __('users.stop_impersonating') }}
-                        </div>
-                    </flux:button>
-                </form>
-            </div>
-        @endif
         <!-- Desktop User Menu -->
         <flux:dropdown position="top" align="end">
             <flux:profile
@@ -163,6 +148,8 @@
 </flux:sidebar>
 
 <flux:main container class="flex flex-col">
+    @include('partials.impersonation-banner')
+
     <div class="">
         {{ $slot }}
     </div>

@@ -49,25 +49,6 @@
 
     <flux:spacer/>
 
-    @if (Session::has('admin_user_id'))
-        <div class="py-2 flex items-center justify-center bg-zinc-100 dark:bg-zinc-600 dark:text-white mb-6 rounded">
-            <form id="stop-impersonating" class="flex flex-col items-center gap-3" action="{{ route('impersonate.destroy') }}"
-                  method="POST">
-                @csrf
-                @method('DELETE')
-                <p class="text-xs">
-                    {{ __('users.you_are_impersonating') }}:
-                    <strong>{{ auth()->user()->name }}</strong>
-                </p>
-                <flux:button type="submit" size="sm" variant="danger" form="stop-impersonating" class="!w-full !flex !flex-row">
-                    <div>
-                        {{ __('users.stop_impersonating') }}
-                    </div>
-                </flux:button>
-            </form>
-        </div>
-    @endif
-
     <flux:navlist variant="outline">
         {{--                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">--}}
         {{--                    Repository--}}

@@ -16,6 +16,8 @@ abstract class TestCase extends BaseTestCase
 
         Role::create(['name' => 'super-admin']);
 
+        Permission::create(['name' => 'impersonate']);
+
         Permission::create(['name' => 'view users']);
         Permission::create(['name' => 'create users']);
         Permission::create(['name' => 'update users']);
