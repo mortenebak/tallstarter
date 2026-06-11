@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Settings;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -16,6 +17,7 @@ class TwoFactor extends Component
 
     public string $code = '';
 
+    /** @var array<int, string> */
     public array $recoveryCodes = [];
 
     /**
@@ -188,7 +190,7 @@ class TwoFactor extends Component
         return decrypt($user->two_factor_secret);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.settings.two-factor');
     }

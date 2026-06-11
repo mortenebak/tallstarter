@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -32,6 +34,12 @@ class TwoFactorChallenge extends Component
             session('login.id')
         );
 
+        if (! $user instanceof User) {
+            throw ValidationException::withMessages([
+                'code' => __('auth.failed'),
+            ]);
+        }
+
         if ($this->recovery) {
             $this->challengeUsingRecoveryCode($user);
         } else {
@@ -51,7 +59,7 @@ class TwoFactorChallenge extends Component
     /**
      * Challenge using the authenticator app code.
      */
-    protected function challengeUsingCode($user): void
+    protected function challengeUsingCode(User $user): void
     {
         $google2fa = new Google2FA;
         $secret = decrypt($user->two_factor_secret);
@@ -68,7 +76,7 @@ class TwoFactorChallenge extends Component
     /**
      * Challenge using a recovery code.
      */
-    protected function challengeUsingRecoveryCode($user): void
+    protected function challengeUsingRecoveryCode(User $user): void
     {
         $recoveryCodes = $user->recoveryCodes();
 
@@ -120,7 +128,7 @@ class TwoFactorChallenge extends Component
         return Str::transliterate('two-factor|'.request()->ip());
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.auth.two-factor-challenge');
     }

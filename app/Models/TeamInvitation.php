@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
+/**
+ * @property \Illuminate\Support\Carbon $expires_at
+ */
 class TeamInvitation extends Model
 {
     /**
@@ -49,6 +52,8 @@ class TeamInvitation extends Model
 
     /**
      * Get the team that owns the invitation.
+     *
+     * @return BelongsTo<Team, $this>
      */
     public function team(): BelongsTo
     {

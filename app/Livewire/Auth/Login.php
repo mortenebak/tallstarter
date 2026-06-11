@@ -28,7 +28,7 @@ class Login extends Component
     /**
      * Handle an incoming authentication request.
      */
-    public function login()
+    public function login(): void
     {
         $this->validate();
 
@@ -53,7 +53,9 @@ class Login extends Component
                 'login.remember' => $this->remember,
             ]);
 
-            return $this->redirect(route('two-factor.challenge'), navigate: true);
+            $this->redirect(route('two-factor.challenge'), navigate: true);
+
+            return;
         }
 
         RateLimiter::clear($this->throttleKey());

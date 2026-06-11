@@ -5,5 +5,15 @@ parameters:
 
     paths:
        - app/
+       - routes/
+       - database/
 
     level: 7
+
+    ignoreErrors:
+        # laravel/socialite is in composer.json/lock but may be missing from a stale
+        # local vendor directory; with a complete vendor install this error never fires.
+        -
+            message: '#unknown class Laravel\\Socialite\\Facades\\Socialite#'
+            path: app/Http/Controllers/Auth/SocialLoginController.php
+            reportUnmatched: false

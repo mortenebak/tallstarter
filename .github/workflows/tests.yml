@@ -11,9 +11,8 @@ on:
       - main
 
 jobs:
-  ci:
+  lint:
     runs-on: ubuntu-latest
-    environment: Testing
 
     steps:
       - name: Checkout
@@ -22,7 +21,73 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.4
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run Pint
+        run: vendor/bin/pint --test
+
+  static:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit=2G
+
+  rector:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run Rector
+        run: vendor/bin/rector --dry-run
+
+  tests:
+    runs-on: ubuntu-latest
+    environment: Testing
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: xdebug
 
