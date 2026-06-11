@@ -22,7 +22,7 @@
         "livewire/volt": "^1.7.0",
         "pragmarx/google2fa-qrcode": "^3.0",
         "spatie/laravel-permission": "^6.16",
-        "wire-elements/modal": "^2.0.13"
+        "wire-elements/modal": "^3.0.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15.2",
