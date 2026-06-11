@@ -26,6 +26,7 @@ class SocialLoginController extends Controller
     public function callback(string $provider): RedirectResponse
     {
         try {
+            /** @var \Laravel\Socialite\Two\User $socialUser */
             $socialUser = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Authentication failed.');
