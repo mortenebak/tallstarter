@@ -5,6 +5,40 @@
     </x-page-heading>
 
     <x-settings.layout :heading="__('settings.profile')" :subheading="__('settings.profile_description')">
+        <div class="mt-6 flex items-center gap-4">
+            <flux:avatar size="xl" :src="auth()->user()->avatarUrl()" :initials="auth()->user()->initials()" />
+
+            <div class="flex flex-col gap-2">
+                <flux:input
+                    type="file"
+                    wire:model="avatar"
+                    :label="__('settings.avatar')"
+                    accept="image/jpeg,image/png,image/webp"
+                />
+
+                <flux:text size="sm" wire:loading wire:target="avatar">
+                    {{ __('settings.avatar_uploading') }}
+                </flux:text>
+
+                <div class="flex items-center gap-4">
+                    @if (auth()->user()->avatar)
+                        <flux:button
+                            variant="subtle"
+                            size="sm"
+                            wire:click="removeAvatar"
+                            wire:loading.attr="disabled"
+                        >
+                            {{ __('settings.remove_avatar') }}
+                        </flux:button>
+                    @endif
+
+                    <x-action-message on="avatar-updated">
+                        {{ __('settings.avatar_updated') }}
+                    </x-action-message>
+                </div>
+            </div>
+        </div>
+
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
             <flux:input wire:model="name" :label="__('users.name')" type="text" name="name" required autofocus autocomplete="name" />
 

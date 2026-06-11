@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -26,6 +27,7 @@ class User extends Authenticatable // implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
         'locale',
         'current_team_id',
@@ -104,6 +106,18 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function isAdminOfTeam(Team $team): bool
     {
         return $this->getRoleInTeam($team) === 'admin';
+    }
+
+    /**
+     * Get the public URL for the user's avatar, or null if none is set.
+     */
+    public function avatarUrl(): ?string
+    {
+        if (is_null($this->avatar)) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($this->avatar);
     }
 
     /**
