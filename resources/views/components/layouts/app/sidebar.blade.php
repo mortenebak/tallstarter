@@ -68,6 +68,7 @@
         <flux:dropdown position="bottom" align="start">
             <flux:profile
                 :name="auth()->user()->name"
+                :avatar="auth()->user()->avatarUrl()"
                 :initials="auth()->user()->initials()"
                 icon-trailing="chevrons-up-down"
             />
@@ -77,11 +78,15 @@
                     <div class="p-0 text-sm font-normal">
                         <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                    <span
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
-                                    >
-                                        {{ auth()->user()->initials() }}
-                                    </span>
+                                    @if (auth()->user()->avatarUrl())
+                                        <img src="{{ auth()->user()->avatarUrl() }}" alt="{{ auth()->user()->name }}" class="h-full w-full object-cover" />
+                                    @else
+                                        <span
+                                            class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                        >
+                                            {{ auth()->user()->initials() }}
+                                        </span>
+                                    @endif
                                 </span>
 
                             <div class="grid flex-1 text-left text-sm leading-tight">
@@ -130,6 +135,7 @@
     @auth
         <flux:dropdown position="top" align="end">
             <flux:profile
+                :avatar="auth()->user()->avatarUrl()"
                 :initials="auth()->user()->initials()"
                 icon-trailing="chevron-down"
             />
@@ -139,11 +145,15 @@
                     <div class="p-0 text-sm font-normal">
                         <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                    <span
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
-                                    >
-                                        {{ auth()->user()->initials() }}
-                                    </span>
+                                    @if (auth()->user()->avatarUrl())
+                                        <img src="{{ auth()->user()->avatarUrl() }}" alt="{{ auth()->user()->name }}" class="h-full w-full object-cover" />
+                                    @else
+                                        <span
+                                            class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                        >
+                                            {{ auth()->user()->initials() }}
+                                        </span>
+                                    @endif
                                 </span>
 
                             <div class="grid flex-1 text-left text-sm leading-tight">
