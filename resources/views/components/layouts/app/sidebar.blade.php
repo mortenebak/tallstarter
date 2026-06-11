@@ -78,6 +78,10 @@
         {{--                </flux:navlist.item>--}}
     </flux:navlist>
 
+    <div class="flex justify-start">
+        <x-appearance-toggle align="start" />
+    </div>
+
     @auth
         <!-- Desktop User Menu -->
         <flux:dropdown position="bottom" align="start">
@@ -139,6 +143,8 @@
     <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left"/>
 
     <flux:spacer/>
+
+    <x-appearance-toggle class="mr-1.5" />
 
     @auth
         <flux:dropdown position="top" align="end">

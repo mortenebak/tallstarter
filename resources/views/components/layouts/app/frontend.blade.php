@@ -32,6 +32,8 @@
             @endguest
         </nav>
     @endif
+
+    <x-appearance-toggle class="mx-1.5" />
     {{--            <flux:navbar class="mr-1.5 space-x-0.5 py-0!">--}}
     {{--                <flux:tooltip content="Search" position="bottom">--}}
     {{--                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" label="Search" />--}}

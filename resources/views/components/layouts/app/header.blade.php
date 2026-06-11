@@ -43,6 +43,8 @@
                 </flux:tooltip>
             </flux:navbar>
 
+            <x-appearance-toggle class="mr-1.5" />
+
             <!-- Desktop User Menu -->
             <flux:dropdown position="top" align="end">
                 <flux:profile

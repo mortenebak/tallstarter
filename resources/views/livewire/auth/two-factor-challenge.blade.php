@@ -7,11 +7,12 @@
 
     <form wire:submit.prevent="challenge" class="flex flex-col gap-6">
         <!-- Code Input -->
-        <flux:input 
-            wire:model="code" 
-            :label="$recovery ? __('Recovery Code') : __('Code')" 
-            type="text" 
-            name="code" 
+        <flux:input
+            wire:model="code"
+            :label="$recovery ? __('Recovery Code') : __('Code')"
+            :aria-label="$recovery ? __('Recovery Code') : __('Code')"
+            type="text"
+            name="code"
             required
             autofocus
             autocomplete="one-time-code"
